@@ -13,7 +13,7 @@ export const birdProducts = [
         name: "Perruche Ondulée Bleue",
         scientific: "Melopsittacus undulatus",
         price: 30,
-        category: "Perruche",
+        category: "Perruche Ondulée",
         image: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=600",
         description: "Un petit oiseau joyeux et sociable, parfait pour les débutants."
     },
