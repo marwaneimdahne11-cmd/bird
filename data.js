@@ -10,9 +10,9 @@ export const BIRDS_DATA = [
     },
     {
         id: 2,
-        name: "Perruche Ondulée",
+        name: "Perruche Ondulée Bleue",
         scientific: "Melopsittacus undulatus",
-        price: 25,
+        price: 30,
         category: "Perruche",
         image: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=600",
         description: "Un petit oiseau joyeux et sociable, parfait pour les débutants."
@@ -34,7 +34,27 @@ export const BIRDS_DATA = [
         category: "Perroquet",
         image: "https://images.unsplash.com/photo-1480044965905-02098d419e96?auto=format&fit=crop&q=80&w=600",
         description: "Un perroquet majestueux aux couleurs flamboyantes."
-    }
+    },
+    // Adding 50 Perruches Ondulées (Budgies)
+    ...Array.from({ length: 50 }, (_, i) => ({
+        id: 10 + i,
+        name: `Perruche Ondulée Type ${i + 1}`,
+        scientific: "Melopsittacus undulatus",
+        price: Math.floor(Math.random() * (45 - 20) + 20),
+        category: "Perruche Ondulée",
+        image: `https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=600&sig=${i}`,
+        description: "Une magnifique perruche ondulée sélectionnée pour sa vitalité et ses couleurs."
+    })),
+    // Adding 50 Diamants Mandarins (Zebra Finches)
+    ...Array.from({ length: 50 }, (_, i) => ({
+        id: 60 + i,
+        name: `Diamant Mandarin Type ${i + 1}`,
+        scientific: "Taeniopygia guttata",
+        price: Math.floor(Math.random() * (25 - 12) + 12),
+        category: "Diamant Mandarin",
+        image: `https://images.unsplash.com/photo-1444464666168-49d633b867ad?auto=format&fit=crop&q=80&w=600&sig=${i + 60}`,
+        description: "Un petit oiseau vif et robuste, reconnu pour son chant délicat."
+    }))
 ];
 
 export const ACCESSORIES_DATA = [

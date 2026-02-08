@@ -75,11 +75,10 @@
                     <button class="filter-btn active" data-filter="all">
                         <i data-lucide="grid-3x3"></i> Tous
                     </button>
-                    <button class="filter-btn" data-filter="Perroquet">
-                        <i data-lucide="bird"></i> Perroquets
-                    </button>
-                    <button class="filter-btn" data-filter="Perruche">Perruches</button>
+                    <button class="filter-btn" data-filter="Perroquet">Perroquets</button>
                     <button class="filter-btn" data-filter="Canari">Canaris</button>
+                    <button class="filter-btn" data-filter="Perruche Ondulée">Perruches Ondulées</button>
+                    <button class="filter-btn" data-filter="Diamant Mandarin">Diamants Mandarins</button>
                 </div>
                 <div class="sort">
                     <select id="sort-select">
@@ -92,6 +91,12 @@
 
             <div id="birds-grid" class="products-grid">
                 <!-- Dynamically populated -->
+            </div>
+
+            <div class="load-more-container" id="load-more-container">
+                <button id="load-more-btn" class="btn btn-outline btn-lg">
+                    Charger plus de plumes
+                </button>
             </div>
         </section>
     </main>
@@ -137,9 +142,26 @@
 
         const grid = document.getElementById('birds-grid');
         const filterBtns = document.querySelectorAll('.filter-btn');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const loadMoreContainer = document.getElementById('load-more-container');
 
-        function renderBirds(data) {
-            grid.innerHTML = data.map(bird => `
+        const ITEMS_PER_PAGE = 12;
+        let currentPage = 1;
+        let currentFilter = 'all';
+
+        function getFilteredData() {
+            return currentFilter === 'all'
+                ? BIRDS_DATA
+                : BIRDS_DATA.filter(b => b.category === currentFilter);
+        }
+
+        function renderBirds(isNewFilter = false) {
+            const data = getFilteredData();
+            const start = 0;
+            const end = currentPage * ITEMS_PER_PAGE;
+            const visibleData = data.slice(start, end);
+
+            grid.innerHTML = visibleData.map(bird => `
                 <div class="product-card" data-category="${bird.category}">
                     <div class="product-image">
                         <img src="${bird.image}" alt="Photo de ${bird.name}" loading="lazy">
@@ -157,19 +179,36 @@
                     </div>
                 </div>
             `).join('');
-            lucide.createIcons();
+
+            // Hide/Show "Load More" button
+            if (end >= data.length) {
+                loadMoreContainer.style.display = 'none';
+            } else {
+                loadMoreContainer.style.display = 'flex';
+            }
+
+            if (window.lucide) lucide.createIcons();
         }
 
-        renderBirds(BIRDS_DATA);
+        // Initial render
+        renderBirds();
 
+        // Filter events
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                const filtered = filter === 'all' ? BIRDS_DATA : BIRDS_DATA.filter(b => b.category === filter);
-                renderBirds(filtered);
+
+                currentFilter = btn.dataset.filter;
+                currentPage = 1; // Reset to page 1 on filter change
+                renderBirds(true);
             });
+        });
+
+        // Load more event
+        loadMoreBtn.addEventListener('click', () => {
+            currentPage++;
+            renderBirds();
         });
     </script>
     <script src="./cart.js"></script>
