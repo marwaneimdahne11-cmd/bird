@@ -1289,7 +1289,6 @@ footer {
     color: var(--primary);
     border-radius: var(--radius-sm);
     transition: var(--transition);
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -1355,6 +1354,7 @@ footer {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
+    display: block !important;
 }
 
 

@@ -1,14 +1,38 @@
-// Bird Haven - Premium Application Logic
-
-// Global function for emergency click handling
+// Global function for mobile menu toggle
 window.toggleMobileMenu = function () {
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
+
+    console.log('toggleMobileMenu called');
+    console.log('mobileNav element:', mobileNav);
+
     if (mobileNav) {
         const isOpen = mobileNav.classList.toggle('active');
-        if (overlay) overlay.classList.toggle('active');
+        console.log('Menu is now:', isOpen ? 'OPEN' : 'CLOSED');
+
+        // Also apply inline styles as fallback
+        if (isOpen) {
+            mobileNav.style.opacity = '1';
+            mobileNav.style.visibility = 'visible';
+            mobileNav.style.pointerEvents = 'all';
+            mobileNav.style.display = 'block';
+            mobileNav.style.transform = 'translateX(-50%) translateY(0)';
+        } else {
+            mobileNav.style.opacity = '0';
+            mobileNav.style.visibility = 'hidden';
+            mobileNav.style.pointerEvents = 'none';
+            mobileNav.style.transform = 'translateX(-50%) translateY(-10px)';
+        }
+
+        if (overlay) {
+            overlay.classList.toggle('active');
+            overlay.style.opacity = isOpen ? '1' : '0';
+            overlay.style.visibility = isOpen ? 'visible' : 'hidden';
+        }
+
         document.body.style.overflow = isOpen ? 'hidden' : '';
-        console.log('Mobile menu toggled via global function', isOpen);
+    } else {
+        console.error('Mobile nav element not found!');
     }
 };
 
