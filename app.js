@@ -1,11 +1,30 @@
 // Bird Haven - Premium Application Logic
 
+// Global function for emergency click handling
+window.toggleMobileMenu = function () {
+    const mobileNav = document.getElementById('mobile-nav');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    if (mobileNav) {
+        const isOpen = mobileNav.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        console.log('Mobile menu toggled via global function', isOpen);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Bird Haven UI Initialized');
 
+    // 1. Initialize Mobile Menu FIRST for maximum reliability
+    try {
+        initMobileMenu();
+    } catch (err) {
+        console.error('Error initializing mobile menu:', err);
+    }
+
+    // 2. Initialize other components
     initNavigation();
     initScrollReveal();
-    initMobileMenu();
 });
 
 /**
@@ -13,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initNavigation() {
     const header = document.querySelector('header');
+    if (!header) return;
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -36,8 +56,6 @@ function initScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                // Optional: stop observing once revealed
-                // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -51,66 +69,39 @@ function initScrollReveal() {
 }
 
 /**
- * Mobile menu toggle functionality using Event Delegation
+ * Mobile menu toggle functionality
  */
 function initMobileMenu() {
-    console.log('Initializing Mobile Menu (Dropdown Mode)');
-
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
+    const btn = document.getElementById('mobile-menu-btn');
 
-    if (!mobileNav) {
-        console.warn('Mobile navigation element (#mobile-nav) not found');
+    if (!mobileNav || !btn) {
+        console.warn('Mobile menu elements not found');
         return;
     }
 
-    // Toggle menu visibility
-    function toggleMenu(isOpen) {
-        if (isOpen === undefined) {
-            isOpen = !mobileNav.classList.contains('active');
-        }
-
-        if (isOpen) {
-            mobileNav.classList.add('active');
-            if (overlay) overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            console.log('Mobile menu opened');
-        } else {
-            mobileNav.classList.remove('active');
-            if (overlay) overlay.classList.remove('active');
-            document.body.style.overflow = '';
-            console.log('Mobile menu closed');
-        }
-    }
-
-    // Capture-phase debug listener
-    window.addEventListener('click', (e) => {
-        const target = e.target;
-        const isHamburger = target.closest('#mobile-menu-btn');
-
-        if (isHamburger) {
-            console.log('Hamburger detected in capture phase', target);
-            alert('Icone Menu cliquée !');
+    function toggle(e) {
+        if (e) {
             e.preventDefault();
             e.stopPropagation();
-            toggleMenu();
         }
+        window.toggleMobileMenu();
+    }
 
-    }, true); // Use capture phase to bypass any blocking elements
+    // Multi-event support (Click and Touch)
+    btn.addEventListener('click', toggle, true);
+    btn.addEventListener('touchstart', toggle, { passive: false });
 
-    // Backup listener for overlay and links
+    // Close on overlay or link click
     document.addEventListener('click', (e) => {
         const target = e.target;
-
-        if (target === overlay || target.closest('#mobile-nav-close') || target.closest('.mobile-nav-links a')) {
-            toggleMenu(false);
+        if (target === overlay || target.closest('.mobile-nav-links a')) {
+            if (mobileNav.classList.contains('active')) {
+                window.toggleMobileMenu();
+            }
         }
     });
 
-    console.log('Mobile menu dropdown listeners attached (Capture Phase)');
+    console.log('Mobile menu listeners attached (Click + Touch)');
 }
-
-
-
-
-
