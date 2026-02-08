@@ -78,13 +78,7 @@ function initMobileMenu() {
 
     if (!mobileNav || !btn) {
         console.warn('Mobile menu elements not found');
-        if (isHamburger) {
-            console.log('Hamburger detected in capture phase', target);
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMenu();
-        }
-        window.toggleMobileMenu();
+        return;
     }
 
     function toggle(e) {
@@ -111,3 +105,4 @@ function initMobileMenu() {
 
     console.log('Mobile menu listeners attached (Click + Touch)');
 }
+
