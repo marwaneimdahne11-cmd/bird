@@ -1,4 +1,5 @@
-export const birdProducts = [
+// Initial curated birds
+const initialBirds = [
     {
         id: 1,
         name: "Gris du Gabon",
@@ -34,40 +35,45 @@ export const birdProducts = [
         category: "Perroquet",
         image: "https://images.unsplash.com/photo-1480044965905-02098d419e96?auto=format&fit=crop&q=80&w=600",
         description: "Un perroquet majestueux aux couleurs flamboyantes."
-    },
-    // Adding 50 Perruches Ondulées (Budgies)
-    ...Array.from({ length: 50 }, (_, i) => {
-        const budgieImages = [
-            "tJzEw-8Y_Hk", "xP7v0rK7E4w", "7vJgQ_k9lQ8", "SgD40x4X_Uo", "_y8Y5A3s-oE", "l0I_l9mZk_E"
-        ];
-        const imgId = budgieImages[i % budgieImages.length];
-        return {
-            id: 10 + i,
-            name: `Perruche Ondulée Type ${i + 1}`,
-            scientific: "Melopsittacus undulatus",
-            price: Math.floor(Math.random() * (45 - 20) + 20),
-            category: "Perruche Ondulée",
-            image: `https://images.unsplash.com/photo-${imgId}?auto=format&fit=crop&q=80&w=600`,
-            description: "Une magnifique perruche ondulée sélectionnée pour sa vitalité et ses couleurs."
-        };
-    }),
-    // Adding 50 Diamants Mandarins (Zebra Finches)
-    ...Array.from({ length: 50 }, (_, i) => {
-        const finchImages = [
-            "nDV6ahWLvEg" // Three zebra finches on branch by Sarah Tatton
-        ];
-        const imgId = finchImages[i % finchImages.length];
-        return {
-            id: 60 + i,
-            name: `Diamant Mandarin Type ${i + 1}`,
-            scientific: "Taeniopygia guttata",
-            price: Math.floor(Math.random() * (25 - 12) + 12),
-            category: "Diamant Mandarin",
-            image: `https://images.unsplash.com/photo-${imgId}?auto=format&fit=crop&q=80&w=600`,
-            description: "Un petit oiseau vif et robuste, reconnu pour son chant délicat."
-        };
-    })
+    }
 ];
+
+// Generate dynamic budgies
+const budgies = Array.from({ length: 50 }, (_, i) => {
+    const budgieImages = [
+        "tJzEw-8Y_Hk", "xP7v0rK7E4w", "7vJgQ_k9lQ8", "SgD40x4X_Uo", "_y8Y5A3s-oE", "l0I_l9mZk_E"
+    ];
+    const imgId = budgieImages[i % budgieImages.length];
+    return {
+        id: 10 + i,
+        name: `Perruche Ondulée Type ${i + 1}`,
+        scientific: "Melopsittacus undulatus",
+        price: Math.floor(Math.random() * (45 - 20) + 20),
+        category: "Perruche Ondulée",
+        image: `https://images.unsplash.com/photo-${imgId}?auto=format&fit=crop&q=80&w=600`,
+        description: "Une magnifique perruche ondulée sélectionnée pour sa vitalité et ses couleurs."
+    };
+});
+
+// Generate dynamic finches
+const finches = Array.from({ length: 50 }, (_, i) => {
+    const finchImages = [
+        "nDV6ahWLvEg"
+    ];
+    const imgId = finchImages[i % finchImages.length];
+    return {
+        id: 60 + i,
+        name: `Diamant Mandarin Type ${i + 1}`,
+        scientific: "Taeniopygia guttata",
+        price: Math.floor(Math.random() * (25 - 12) + 12),
+        category: "Diamant Mandarin",
+        image: `https://images.unsplash.com/photo-${imgId}?auto=format&fit=crop&q=80&w=600`,
+        description: "Un petit oiseau vif et robuste, reconnu pour son chant délicat."
+    };
+});
+
+// Final export
+export const birdProducts = initialBirds.concat(budgies, finches);
 
 export const ACCESSORIES_DATA = [
     {

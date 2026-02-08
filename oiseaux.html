@@ -90,10 +90,13 @@
             </div>
 
             <div id="birds-grid" class="products-grid">
-                <!-- Dynamically populated -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Chargement de nos merveilles...</p>
+                </div>
             </div>
 
-            <div class="load-more-container" id="load-more-container">
+            <div class="load-more-container" id="load-more-container" style="display: none;">
                 <button id="load-more-btn" class="btn btn-outline btn-lg">
                     Charger plus de plumes
                 </button>
@@ -149,59 +152,93 @@
         let currentPage = 1;
         let currentFilter = 'all';
 
-        function getFilteredData() {
-            return currentFilter === 'all'
-                ? birdProducts
-                : birdProducts.filter(b => b.category === currentFilter);
-        }
-
-        function renderBirds(isNewFilter = false) {
-            const data = getFilteredData();
-            const start = 0;
-            const end = currentPage * ITEMS_PER_PAGE;
-            const visibleData = data.slice(start, end);
-
-            grid.innerHTML = visibleData.map(bird => `
-                <div class="product-card" data-category="${bird.category}">
-                    <div class="product-image">
-                        <img src="${bird.image}" alt="Photo de ${bird.name}" loading="lazy">
-                        <span class="product-badge">${bird.category}</span>
-                    </div>
-                    <div class="product-info">
-                        <h3>${bird.name}</h3>
-                        <p class="scientific">${bird.scientific}</p>
-                        <div class="product-footer">
-                            <span class="price">${bird.price} €</span>
-                            <button class="btn btn-primary btn-sm add-to-cart" data-id="${bird.id}">
-                                <i data-lucide="shopping-cart"></i> Ajouter
-                            </button>
-                        </div>
-                    </div>
+        function showError(message) {
+            grid.innerHTML = `
+                <div class="error-state">
+                    <i data-lucide="alert-circle"></i>
+                    <p>${message}</p>
+                    <button onclick="window.location.reload()" class="btn btn-primary btn-sm">Réessayer</button>
                 </div>
-            `).join('');
-
-            // Hide/Show "Load More" button
-            if (end >= data.length) {
-                loadMoreContainer.style.display = 'none';
-            } else {
-                loadMoreContainer.style.display = 'flex';
-            }
-
+            `;
             if (window.lucide) lucide.createIcons();
         }
 
-        // Initial render
-        renderBirds();
+        function getFilteredData() {
+            try {
+                return currentFilter === 'all'
+                    ? birdProducts
+                    : birdProducts.filter(b => b.category === currentFilter);
+            } catch (err) {
+                console.error("Filter error:", err);
+                return [];
+            }
+        }
+
+        function renderBirds(isNewFilter = false) {
+            try {
+                const data = getFilteredData();
+
+                if (!data || data.length === 0) {
+                    grid.innerHTML = '<p class="empty-msg">Aucun oiseau trouvé dans cette catégorie.</p>';
+                    loadMoreContainer.style.display = 'none';
+                    return;
+                }
+
+                const start = 0;
+                const end = currentPage * ITEMS_PER_PAGE;
+                const visibleData = data.slice(start, end);
+
+                grid.innerHTML = visibleData.map(bird => `
+                    <div class="product-card" data-category="${bird.category}">
+                        <div class="product-image">
+                            <img src="${bird.image}" alt="Photo de ${bird.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1555008889-cb982054ff84?auto=format&fit=crop&q=80&w=600'">
+                            <span class="product-badge">${bird.category}</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>${bird.name}</h3>
+                            <p class="scientific">${bird.scientific}</p>
+                            <div class="product-footer">
+                                <span class="price">${bird.price} €</span>
+                                <button class="btn btn-primary btn-sm add-to-cart" data-id="${bird.id}">
+                                    <i data-lucide="shopping-cart"></i> Ajouter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Hide/Show "Load More" button
+                if (end >= data.length) {
+                    loadMoreContainer.style.display = 'none';
+                } else {
+                    loadMoreContainer.style.display = 'flex';
+                }
+
+                if (window.lucide) lucide.createIcons();
+            } catch (err) {
+                console.error("Render error:", err);
+                showError("Désolé, une erreur est survenue lors de l'affichage du catalogue.");
+            }
+        }
+
+        // Initialize
+        setTimeout(() => {
+            renderBirds();
+        }, 100);
 
         // Filter events
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+                try {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
 
-                currentFilter = btn.dataset.filter;
-                currentPage = 1; // Reset to page 1 on filter change
-                renderBirds(true);
+                    currentFilter = btn.dataset.filter;
+                    currentPage = 1; // Reset to page 1 on filter change
+                    renderBirds(true);
+                } catch (err) {
+                    console.error("Filter click error:", err);
+                }
             });
         });
 
