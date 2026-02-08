@@ -51,46 +51,62 @@ function initScrollReveal() {
 }
 
 /**
- * Mobile menu toggle functionality
+ * Mobile menu toggle functionality using Event Delegation
  */
 function initMobileMenu() {
-    const menuBtn = document.getElementById('mobile-menu-btn');
+    console.log('Initializing Mobile Menu (Event Delegation Mode)');
+
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
-    const closeBtn = document.getElementById('mobile-nav-close');
 
-    console.log('Mobile Menu Init:', { menuBtn, mobileNav, overlay, closeBtn });
-
-    if (!menuBtn || !mobileNav) {
-        console.warn('Mobile menu elements not found');
+    if (!mobileNav) {
+        console.warn('Mobile navigation element (#mobile-nav) not found');
         return;
     }
 
-    function openMenu(e) {
-        if (e) e.preventDefault();
-        console.log('Opening mobile menu');
-        mobileNav.classList.add('active');
-        if (overlay) overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    // Toggle menu visibility
+    function toggleMenu(isOpen) {
+        if (isOpen) {
+            mobileNav.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            console.log('Mobile menu opened');
+        } else {
+            mobileNav.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            console.log('Mobile menu closed');
+        }
     }
 
-    function closeMenu(e) {
-        if (e) e.preventDefault();
-        console.log('Closing mobile menu');
-        mobileNav.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+    // Single event listener on document for all menu-related clicks
+    document.addEventListener('click', (e) => {
+        const target = e.target;
 
-    // Use direct event listeners for better reliability
-    menuBtn.onclick = openMenu;
-    if (closeBtn) closeBtn.onclick = closeMenu;
-    if (overlay) overlay.onclick = closeMenu;
+        // Open button click (including clicks on icons inside the button)
+        if (target.closest('#mobile-menu-btn')) {
+            e.preventDefault();
+            toggleMenu(true);
+        }
 
-    // Close menu on link click
-    const mobileLinks = mobileNav.querySelectorAll('.mobile-nav-links a');
-    mobileLinks.forEach(link => {
-        link.onclick = closeMenu;
+        // Close button click
+        if (target.closest('#mobile-nav-close')) {
+            e.preventDefault();
+            toggleMenu(false);
+        }
+
+        // Overlay click
+        if (target === overlay) {
+            toggleMenu(false);
+        }
+
+        // Navigation link click
+        if (target.closest('.mobile-nav-links a')) {
+            toggleMenu(false);
+        }
     });
+
+    console.log('Mobile menu listeners attached via delegation');
 }
+
 
