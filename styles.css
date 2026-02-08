@@ -1330,30 +1330,33 @@ footer {
 }
 
 .mobile-nav {
-    position: absolute;
-    top: calc(100% + 1rem);
-    left: 0;
-    right: 0;
+    position: fixed;
+    top: 5.5rem;
+    /* Positioned directly below the floating header */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    width: 94%;
+    max-width: 1160px;
+    /* Slightly smaller than header max-width */
     background: white;
-    z-index: 999;
+    z-index: 9999;
     padding: 1.5rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--glass-border);
-    transform: translateY(-10px);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
-    /* Block-safe by default */
 }
 
 .mobile-nav.active {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     opacity: 1;
     visibility: visible;
     pointer-events: all;
 }
+
 
 
 .mobile-nav-close {
