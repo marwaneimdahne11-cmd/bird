@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessoires | Bird Haven</title>
-    <meta name="description" content="Cages, nourriture premium et jouets pour le bien-être de vos oiseaux.">
+    <title>Politique de Confidentialité | Bird Haven</title>
+    <meta name="description" content="Consultez notre politique de confidentialité.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="page-catalog">
+<body class="page-privacy">
     <header id="main-header" class="scrolled">
         <div class="logo">
             <span class="logo-icon">🐦</span>
@@ -27,7 +27,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="oiseaux.html">Nos Oiseaux</a></li>
-                <li><a href="accessoires.html" class="active">Accessoires</a></li>
+                <li><a href="accessoires.html">Accessoires</a></li>
                 <li><a href="guides.html">Guides & Conseils</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -43,43 +43,42 @@
             </button>
         </div>
 
-        <!-- Mobile Navigation Dropdown -->
         <nav class="mobile-nav" id="mobile-nav">
             <ul class="mobile-nav-links">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="oiseaux.html">Nos Oiseaux</a></li>
-                <li><a href="accessoires.html" class="active">Accessoires</a></li>
+                <li><a href="accessoires.html">Accessoires</a></li>
                 <li><a href="guides.html">Guides & Conseils</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Mobile Navigation Overlay -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
 
     <main>
         <section class="page-hero">
             <div class="container">
-                <span class="page-badge">🏠 Équipement</span>
-                <h1>Accessoires & Soins</h1>
-                <p>Tout ce dont vos oiseaux ont besoin pour être heureux et en bonne santé.</p>
+                <span class="page-badge">🔒 Sécurité</span>
+                <h1>Politique de Confidentialité</h1>
+                <p>Comment nous protégeons vos données personnelles chez Bird Haven.</p>
             </div>
         </section>
 
-        <section class="catalog-section container">
-            <div class="catalog-controls">
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="all">
-                        <i data-lucide="grid-3x3"></i> Tous
-                    </button>
-                    <button class="filter-btn" data-filter="Cages">Cages</button>
-                    <button class="filter-btn" data-filter="Nourriture">Nourriture</button>
-                </div>
-            </div>
+        <section class="container" style="padding: 4rem 0 8rem;">
+            <div
+                style="background: white; padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); line-height: 2;">
+                <h3>Collecte des données</h3>
+                <p>Bird Haven collecte des informations lors de votre commande ou de votre inscription à la newsletter
+                    pour assurer le bon traitement de vos demandes.</p>
 
-            <div id="acc-grid" class="products-grid">
-                <!-- Dynamically populated -->
+                <h3 style="margin-top: 2rem;">Utilisation des données</h3>
+                <p>Vos données sont strictement utilisées pour le traitement de vos commandes et l'amélioration de nos
+                    services. Nous ne revendons jamais vos informations à des tiers.</p>
+
+                <h3 style="margin-top: 2rem;">Vos droits</h3>
+                <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos
+                    données personnelles.</p>
             </div>
         </section>
     </main>
@@ -93,10 +92,10 @@
                 </div>
                 <p>Votre partenaire de confiance pour l'univers aviaire depuis 2020.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"
-                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
                 </div>
             </div>
             <div class="footer-nav">
@@ -120,45 +119,6 @@
         </div>
     </footer>
 
-    <script type="module">
-        import { ACCESSORIES_DATA } from './data.js';
-
-        const grid = document.getElementById('acc-grid');
-        const filterBtns = document.querySelectorAll('.filter-btn');
-
-        function renderAcc(data) {
-            grid.innerHTML = data.map(item => `
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="${item.image}" alt="Accessoire : ${item.name}" loading="lazy">
-                        <span class="product-badge">${item.category}</span>
-                    </div>
-                    <div class="product-info">
-                        <h3>${item.name}</h3>
-                        <div class="product-footer">
-                            <span class="price">${item.price} €</span>
-                            <button class="btn btn-primary btn-sm add-to-cart" data-id="${item.id}">
-                                <i data-lucide="shopping-cart"></i> Ajouter
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        renderAcc(ACCESSORIES_DATA);
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                const filtered = filter === 'all' ? ACCESSORIES_DATA : ACCESSORIES_DATA.filter(b => b.category === filter);
-                renderAcc(filtered);
-            });
-        });
-    </script>
     <script src="app.js"></script>
     <script>lucide.createIcons();</script>
 </body>

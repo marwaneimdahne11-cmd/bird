@@ -3,14 +3,10 @@ window.toggleMobileMenu = function () {
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
 
-    console.log('toggleMobileMenu called');
-    console.log('mobileNav element:', mobileNav);
-
     if (mobileNav) {
         const isOpen = mobileNav.classList.toggle('active');
-        console.log('Menu is now:', isOpen ? 'OPEN' : 'CLOSED');
 
-        // Also apply inline styles as fallback
+        // Apply inline styles as fallback for CSS transitions
         if (isOpen) {
             mobileNav.style.opacity = '1';
             mobileNav.style.visibility = 'visible';
@@ -31,24 +27,15 @@ window.toggleMobileMenu = function () {
         }
 
         document.body.style.overflow = isOpen ? 'hidden' : '';
-    } else {
-        console.error('Mobile nav element not found!');
     }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Bird Haven UI Initialized');
-
-    // 1. Initialize Mobile Menu FIRST for maximum reliability
-    try {
-        initMobileMenu();
-    } catch (err) {
-        console.error('Error initializing mobile menu:', err);
-    }
-
-    // 2. Initialize other components
+    // Initialize components
+    initMobileMenu();
     initNavigation();
     initScrollReveal();
+    initNewsletter();
 });
 
 /**
@@ -71,6 +58,8 @@ function initNavigation() {
  * Reveal elements as they enter the viewport
  */
 function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+
     const observerOptions = {
         threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
@@ -84,7 +73,6 @@ function initScrollReveal() {
         });
     }, observerOptions);
 
-    // Add 'reveal' class to sections and observe them
     const sections = document.querySelectorAll('section, .category-card, .feature');
     sections.forEach(section => {
         section.classList.add('reveal');
@@ -100,20 +88,12 @@ function initMobileMenu() {
     const overlay = document.getElementById('mobile-nav-overlay');
     const btn = document.getElementById('mobile-menu-btn');
 
-    if (!mobileNav || !btn) {
-        console.warn('Mobile menu elements not found');
-        return;
-    }
+    if (!mobileNav || !btn) return;
 
-    // Toggle button handler - no preventDefault needed for button
-    function toggleMenu() {
+    btn.addEventListener('click', () => {
         window.toggleMobileMenu();
-    }
+    });
 
-    // Button click
-    btn.addEventListener('click', toggleMenu);
-
-    // Close on overlay click
     if (overlay) {
         overlay.addEventListener('click', () => {
             if (mobileNav.classList.contains('active')) {
@@ -122,22 +102,77 @@ function initMobileMenu() {
         });
     }
 
-    // Handle navigation links - they should navigate normally
-    // Just close the menu, don't prevent default behavior
     const mobileLinks = mobileNav.querySelectorAll('a');
     mobileLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // Don't prevent default - let the link navigate
-            // Just close the menu
+        link.addEventListener('click', () => {
             if (mobileNav.classList.contains('active')) {
                 mobileNav.classList.remove('active');
                 if (overlay) overlay.classList.remove('active');
                 document.body.style.overflow = '';
+
+                // Reset inline styles
+                mobileNav.style.opacity = '0';
+                mobileNav.style.visibility = 'hidden';
+                mobileNav.style.pointerEvents = 'none';
+                mobileNav.style.transform = 'translateX(-50%) translateY(-10px)';
+                if (overlay) {
+                    overlay.style.opacity = '0';
+                    overlay.style.visibility = 'hidden';
+                }
             }
-            // Navigation happens automatically via href
         });
     });
-
-    console.log('Mobile menu initialized');
 }
 
+/**
+ * Newsletter form handling with Formspree
+ */
+function initNewsletter() {
+    const forms = document.querySelectorAll('.newsletter-form');
+    forms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            // For Formspree, if we want to stay on the page, we use fetch
+            e.preventDefault();
+
+            const input = form.querySelector('input[type="email"]');
+            const button = form.querySelector('button');
+            const url = form.action || 'https://formspree.io/f/your_email';
+
+            if (input && input.value.trim() !== "") {
+                const originalContent = button.innerHTML;
+                button.disabled = true;
+                button.innerHTML = '<i data-lucide="loader"></i> Envoi...';
+                lucide.createIcons();
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        button.innerHTML = '<i data-lucide="check"></i> Merci !';
+                        button.classList.add('btn-success');
+                        input.value = "";
+                    } else {
+                        throw new Error('Formspree error');
+                    }
+                } catch (error) {
+                    button.innerHTML = '<i data-lucide="alert-circle"></i> Erreur';
+                    button.classList.add('btn-error');
+                } finally {
+                    lucide.createIcons();
+                    setTimeout(() => {
+                        button.disabled = false;
+                        button.innerHTML = originalContent;
+                        button.classList.remove('btn-success', 'btn-error');
+                        lucide.createIcons();
+                    }, 3000);
+                }
+            }
+        });
+    });
+}

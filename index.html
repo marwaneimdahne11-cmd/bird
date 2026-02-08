@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bird Haven | L'univers passionné des oiseaux</title>
     <meta name="description"
-        content="Découvrez Bird Haven : vente d'oiseaux, accessoires haut de gamme et guides complets pour passionnés. Expertises et conseils pour vos compagnons à plumes.">
+        content="Bird Haven : Votre expert en oiseaux. Découvrez notre catalogue de perroquets, perruches et canaris, nos accessoires premium et nos guides de soins experts.">
     <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,8 +39,7 @@
                 <span id="cart-count">0</span>
             </a>
             <a href="compte.html" class="btn btn-primary btn-sm">Mon Compte</a>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu" onclick="window.toggleMobileMenu()"
-                style="position: relative; z-index: 10001; pointer-events: auto;">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
                 <i data-lucide="menu"></i>
             </button>
         </div>
@@ -212,8 +211,8 @@
                         <h2>Rejoignez notre communauté</h2>
                         <p>Recevez nos conseils exclusifs, les nouveautés et des offres spéciales directement dans votre
                             boîte mail.</p>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Votre adresse email" required>
+                        <form class="newsletter-form" action="https://formspree.io/f/your_email" method="POST">
+                            <input type="email" name="email" placeholder="Votre adresse email" required>
                             <button type="submit" class="btn btn-accent">
                                 S'abonner
                                 <i data-lucide="send"></i>
@@ -234,10 +233,10 @@
                 </div>
                 <p>Votre partenaire de confiance pour l'univers aviaire depuis 2020.</p>
                 <div class="social-links">
-                    <a href="#"><i data-lucide="facebook"></i></a>
-                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"><i
-                            data-lucide="instagram"></i></a>
-                    <a href="#"><i data-lucide="youtube"></i></a>
+                    <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"
+                        aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
                 </div>
             </div>
             <div class="footer-nav">
@@ -250,8 +249,8 @@
                 </div>
                 <div class="footer-col">
                     <h4>Légal</h4>
-                    <a href="mentions-legales.html">Mentions Légales</a>
-                    <a href="politique-confidentialite.html">Confidentialité</a>
+                    <a href="terms.html">Conditions d'Utilisation</a>
+                    <a href="privacy-policy.html">Confidentialité</a>
                     <a href="faq.html">FAQ</a>
                 </div>
             </div>
