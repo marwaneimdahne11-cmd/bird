@@ -90,11 +90,12 @@ function initMobileMenu() {
 
         if (isHamburger) {
             console.log('Hamburger detected in capture phase', target);
-            // alert('Hamburger Détecté !');
+            alert('Icone Menu cliquée !');
             e.preventDefault();
             e.stopPropagation();
             toggleMenu();
         }
+
     }, true); // Use capture phase to bypass any blocking elements
 
     // Backup listener for overlay and links
