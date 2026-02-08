@@ -55,6 +55,7 @@ function initScrollReveal() {
  */
 function initMobileMenu() {
     console.log('Initializing Mobile Menu (Dropdown Mode)');
+    // alert('Mobile Menu Script Loaded');
 
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
@@ -75,6 +76,7 @@ function initMobileMenu() {
             if (overlay) overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
             console.log('Mobile menu opened');
+            // alert('Menu Opened');
         } else {
             mobileNav.classList.remove('active');
             if (overlay) overlay.classList.remove('active');
@@ -86,12 +88,16 @@ function initMobileMenu() {
     // Single event listener on document for all menu-related clicks
     document.addEventListener('click', (e) => {
         const target = e.target;
+        // console.log('Click on:', target);
 
         // Open/Toggle button click
         if (target.closest('#mobile-menu-btn')) {
             e.preventDefault();
-            toggleMenu(); // Toggles based on current state
+            console.log('Hamburger clicked');
+            alert('Icone Menu cliquée !');
+            toggleMenu();
         }
+
 
         // Close button click (if exists)
         if (target.closest('#mobile-nav-close')) {
@@ -112,6 +118,7 @@ function initMobileMenu() {
 
     console.log('Mobile menu dropdown listeners attached');
 }
+
 
 
 

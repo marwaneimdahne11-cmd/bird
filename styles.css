@@ -1405,5 +1405,12 @@ footer {
     header {
         position: fixed;
         /* Keep it fixed */
+        overflow: visible !important;
+        /* CRITICAL: prevent clipping of the dropdown */
+    }
+
+    .mobile-nav {
+        z-index: 9999 !important;
+        /* Make sure it's on top of everything */
     }
 }
