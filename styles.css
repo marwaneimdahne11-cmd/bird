@@ -1653,3 +1653,113 @@ footer {
     border-color: #10b981 !important;
     color: white !important;
 }
+
+/* --- Checkout Page Styles --- */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.checkout-step {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    margin-bottom: 2rem;
+}
+
+.checkout-step h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.checkout-summary-column {
+    position: sticky;
+    top: 6rem;
+    height: fit-content;
+}
+
+.checkout-summary-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.checkout-items-mini {
+    margin: 1.5rem 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.checkout-item-mini {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.checkout-item-mini .item-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+}
+
+.checkout-totals {
+    margin: 1.5rem 0;
+}
+
+.payment-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.order-success {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.success-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 4rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+.success-icon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+}
+
+.order-ref {
+    margin: 1.5rem 0 2.5rem;
+    padding: 1rem;
+    background: #f0fdf4;
+    color: #166534;
+    border-radius: 0.75rem;
+    display: inline-block;
+}
+
+@media (max-width: 992px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .checkout-summary-column {
+        position: static;
+        order: -1;
+    }
+}

@@ -10,8 +10,96 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if we are on the cart page
     if (document.getElementById('cart-items-list')) {
         renderCartPage();
+        initCheckoutButton();
+    }
+
+    // Check if we are on the checkout page
+    if (document.getElementById('checkout-form')) {
+        renderCheckoutSummary();
+        initCheckoutForm();
     }
 });
+
+/**
+ * Initialize the checkout button on the cart page
+ */
+function initCheckoutButton() {
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showToast('Votre panier est vide');
+            } else {
+                window.location.href = 'commande.html';
+            }
+        });
+    }
+}
+
+/**
+ * Render the order summary on the checkout page
+ */
+function renderCheckoutSummary() {
+    const list = document.getElementById('checkout-items-list');
+    const subtotalEl = document.getElementById('checkout-subtotal');
+    const totalEl = document.getElementById('checkout-total');
+
+    if (!list || !subtotalEl || !totalEl) return;
+
+    if (cart.length === 0) {
+        window.location.href = 'panier.html';
+        return;
+    }
+
+    list.innerHTML = cart.map(item => `
+        <div class="checkout-item-mini">
+            <div class="item-info">
+                <span>${item.name} x ${item.qty}</span>
+                <span>${(item.price * item.qty).toFixed(2)} €</span>
+            </div>
+        </div>
+    `).join('');
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
+    totalEl.textContent = `${subtotal.toFixed(2)} €`;
+}
+
+/**
+ * Initialize the checkout form submission
+ */
+function initCheckoutForm() {
+    const form = document.getElementById('checkout-form');
+    const successSection = document.getElementById('order-success');
+    const checkoutSection = document.querySelector('.checkout-section');
+
+    if (!form || !successSection || !checkoutSection) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Show loading state
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i data-lucide="loader"></i> Traitement...';
+        if (window.lucide) window.lucide.createIcons();
+
+        // Simulate payment/order processing
+        setTimeout(() => {
+            // Success!
+            cart = [];
+            localStorage.setItem('bird_haven_cart', JSON.stringify(cart));
+            updateCartBadge();
+
+            checkoutSection.style.display = 'none';
+            successSection.style.display = 'block';
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 2000);
+    });
+}
 
 /**
  * Initialize event listeners for "Add to Cart" buttons
