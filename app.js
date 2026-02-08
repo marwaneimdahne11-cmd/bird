@@ -93,14 +93,24 @@ function initMobileMenu() {
     btn.addEventListener('click', toggle, true);
     btn.addEventListener('touchstart', toggle, { passive: false });
 
-    // Close on overlay or link click
-    document.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target === overlay || target.closest('.mobile-nav-links a')) {
+    // Close on overlay click
+    if (overlay) {
+        overlay.addEventListener('click', () => {
             if (mobileNav.classList.contains('active')) {
                 window.toggleMobileMenu();
             }
-        }
+        });
+    }
+
+    // Close menu when clicking navigation links (but allow navigation)
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Close menu - navigation will happen naturally via href
+            if (mobileNav.classList.contains('active')) {
+                window.toggleMobileMenu();
+            }
+        });
     });
 
     console.log('Mobile menu listeners attached (Click + Touch)');
