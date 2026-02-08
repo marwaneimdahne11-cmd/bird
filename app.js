@@ -55,7 +55,6 @@ function initScrollReveal() {
  */
 function initMobileMenu() {
     console.log('Initializing Mobile Menu (Dropdown Mode)');
-    // alert('Mobile Menu Script Loaded');
 
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
@@ -76,7 +75,6 @@ function initMobileMenu() {
             if (overlay) overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
             console.log('Mobile menu opened');
-            // alert('Menu Opened');
         } else {
             mobileNav.classList.remove('active');
             if (overlay) overlay.classList.remove('active');
@@ -85,39 +83,32 @@ function initMobileMenu() {
         }
     }
 
-    // Single event listener on document for all menu-related clicks
-    document.addEventListener('click', (e) => {
+    // Capture-phase debug listener
+    window.addEventListener('click', (e) => {
         const target = e.target;
-        // console.log('Click on:', target);
+        const isHamburger = target.closest('#mobile-menu-btn');
 
-        // Open/Toggle button click
-        if (target.closest('#mobile-menu-btn')) {
+        if (isHamburger) {
+            console.log('Hamburger detected in capture phase', target);
+            // alert('Hamburger Détecté !');
             e.preventDefault();
-            console.log('Hamburger clicked');
-            alert('Icone Menu cliquée !');
+            e.stopPropagation();
             toggleMenu();
         }
+    }, true); // Use capture phase to bypass any blocking elements
 
+    // Backup listener for overlay and links
+    document.addEventListener('click', (e) => {
+        const target = e.target;
 
-        // Close button click (if exists)
-        if (target.closest('#mobile-nav-close')) {
-            e.preventDefault();
-            toggleMenu(false);
-        }
-
-        // Overlay click
-        if (target === overlay) {
-            toggleMenu(false);
-        }
-
-        // Navigation link click
-        if (target.closest('.mobile-nav-links a')) {
+        if (target === overlay || target.closest('#mobile-nav-close') || target.closest('.mobile-nav-links a')) {
             toggleMenu(false);
         }
     });
 
-    console.log('Mobile menu dropdown listeners attached');
+    console.log('Mobile menu dropdown listeners attached (Capture Phase)');
 }
+
 
 
 
