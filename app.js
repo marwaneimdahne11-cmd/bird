@@ -59,27 +59,38 @@ function initMobileMenu() {
     const overlay = document.getElementById('mobile-nav-overlay');
     const closeBtn = document.getElementById('mobile-nav-close');
 
-    if (!menuBtn || !mobileNav) return;
+    console.log('Mobile Menu Init:', { menuBtn, mobileNav, overlay, closeBtn });
 
-    function openMenu() {
+    if (!menuBtn || !mobileNav) {
+        console.warn('Mobile menu elements not found');
+        return;
+    }
+
+    function openMenu(e) {
+        if (e) e.preventDefault();
+        console.log('Opening mobile menu');
         mobileNav.classList.add('active');
-        overlay.classList.add('active');
+        if (overlay) overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
-    function closeMenu() {
+    function closeMenu(e) {
+        if (e) e.preventDefault();
+        console.log('Closing mobile menu');
         mobileNav.classList.remove('active');
-        overlay.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
         document.body.style.overflow = '';
     }
 
-    menuBtn.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    if (overlay) overlay.addEventListener('click', closeMenu);
+    // Use direct event listeners for better reliability
+    menuBtn.onclick = openMenu;
+    if (closeBtn) closeBtn.onclick = closeMenu;
+    if (overlay) overlay.onclick = closeMenu;
 
     // Close menu on link click
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    const mobileLinks = mobileNav.querySelectorAll('.mobile-nav-links a');
     mobileLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
+        link.onclick = closeMenu;
     });
 }
+
