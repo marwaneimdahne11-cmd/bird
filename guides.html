@@ -32,6 +32,9 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+            <i data-lucide="menu"></i>
+        </button>
         <div class="header-actions">
             <a href="panier.html" class="cart-btn">
                 <i data-lucide="shopping-cart"></i>
@@ -40,6 +43,19 @@
             <a href="compte.html" class="btn btn-primary btn-sm">Mon Compte</a>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" id="mobile-nav-close"><i data-lucide="x"></i></button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="oiseaux.html">Nos Oiseaux</a></li>
+            <li><a href="accessoires.html">Accessoires</a></li>
+            <li><a href="guides.html" class="active">Guides & Conseils</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
     <main>
         <section class="page-hero">
@@ -165,6 +181,7 @@
         </div>
     </footer>
 
+    <script src="app.js"></script>
     <script>lucide.createIcons();</script>
 </body>
 
