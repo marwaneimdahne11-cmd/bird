@@ -54,7 +54,7 @@ function initScrollReveal() {
  * Mobile menu toggle functionality using Event Delegation
  */
 function initMobileMenu() {
-    console.log('Initializing Mobile Menu (Event Delegation Mode)');
+    console.log('Initializing Mobile Menu (Dropdown Mode)');
 
     const mobileNav = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
@@ -66,6 +66,10 @@ function initMobileMenu() {
 
     // Toggle menu visibility
     function toggleMenu(isOpen) {
+        if (isOpen === undefined) {
+            isOpen = !mobileNav.classList.contains('active');
+        }
+
         if (isOpen) {
             mobileNav.classList.add('active');
             if (overlay) overlay.classList.add('active');
@@ -83,13 +87,13 @@ function initMobileMenu() {
     document.addEventListener('click', (e) => {
         const target = e.target;
 
-        // Open button click (including clicks on icons inside the button)
+        // Open/Toggle button click
         if (target.closest('#mobile-menu-btn')) {
             e.preventDefault();
-            toggleMenu(true);
+            toggleMenu(); // Toggles based on current state
         }
 
-        // Close button click
+        // Close button click (if exists)
         if (target.closest('#mobile-nav-close')) {
             e.preventDefault();
             toggleMenu(false);
@@ -106,7 +110,8 @@ function initMobileMenu() {
         }
     });
 
-    console.log('Mobile menu listeners attached via delegation');
+    console.log('Mobile menu dropdown listeners attached');
 }
+
 
 
