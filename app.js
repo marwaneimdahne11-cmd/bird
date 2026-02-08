@@ -81,17 +81,13 @@ function initMobileMenu() {
         return;
     }
 
-    function toggle(e) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+    // Toggle button handler - no preventDefault needed for button
+    function toggleMenu() {
         window.toggleMobileMenu();
     }
 
-    // Multi-event support (Click and Touch)
-    btn.addEventListener('click', toggle, true);
-    btn.addEventListener('touchstart', toggle, { passive: false });
+    // Button click
+    btn.addEventListener('click', toggleMenu);
 
     // Close on overlay click
     if (overlay) {
@@ -102,17 +98,22 @@ function initMobileMenu() {
         });
     }
 
-    // Close menu when clicking navigation links (but allow navigation)
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    // Handle navigation links - they should navigate normally
+    // Just close the menu, don't prevent default behavior
+    const mobileLinks = mobileNav.querySelectorAll('a');
     mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // Close menu - navigation will happen naturally via href
+        link.addEventListener('click', function (e) {
+            // Don't prevent default - let the link navigate
+            // Just close the menu
             if (mobileNav.classList.contains('active')) {
-                window.toggleMobileMenu();
+                mobileNav.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
+            // Navigation happens automatically via href
         });
     });
 
-    console.log('Mobile menu listeners attached (Click + Touch)');
+    console.log('Mobile menu initialized');
 }
 

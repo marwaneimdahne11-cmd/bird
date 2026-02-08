@@ -1385,9 +1385,15 @@ footer {
     border-radius: var(--radius-md);
     transition: var(--transition);
     background: transparent;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10000;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-links a:hover,
+.mobile-nav-links a:active,
 .mobile-nav-links a.active {
     background: var(--primary-light);
     color: var(--primary);
