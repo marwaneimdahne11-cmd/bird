@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guides & Conseils | Bird Haven</title>
+    <meta name="description" content="Guides complets et conseils d'experts pour prendre soin de vos oiseaux.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="page-guides">
+    <header id="main-header" class="scrolled">
+        <div class="logo">
+            <span class="logo-icon">🐦</span>
+            <a href="index.html">
+                <h1>Bird Haven</h1>
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="oiseaux.html">Nos Oiseaux</a></li>
+                <li><a href="accessoires.html">Accessoires</a></li>
+                <li><a href="guides.html" class="active">Guides & Conseils</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="panier.html" class="cart-btn">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </a>
+            <a href="compte.html" class="btn btn-primary btn-sm">Mon Compte</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <span class="page-badge">📚 Ressources</span>
+                <h1>Encyclopédie & Conseils</h1>
+                <p>Devenez un expert de vos compagnons à plumes avec nos guides détaillés.</p>
+            </div>
+        </section>
+
+        <section class="guides-section container">
+            <h2 class="section-title">Articles Populaires</h2>
+            <div class="guides-grid">
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&q=80&w=800"
+                            alt="Alimentation" loading="lazy">
+                        <span class="guide-tag">Nutrition</span>
+                    </div>
+                    <div class="guide-content">
+                        <h3>Alimentation équilibrée</h3>
+                        <p>Découvrez les besoins nutritionnels spécifiques selon les espèces d'oiseaux.</p>
+                        <a href="#" class="card-link">Lire l'article <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <img src="https://images.unsplash.com/photo-1590833215276-857cbaec8996?auto=format&fit=crop&q=80&w=800"
+                            alt="Santé" loading="lazy">
+                        <span class="guide-tag">Santé</span>
+                    </div>
+                    <div class="guide-content">
+                        <h3>Prendre soin de leur santé</h3>
+                        <p>Apprenez à identifier les signes de bonne santé et les symptômes courants à surveiller.</p>
+                        <a href="#" class="card-link">Lire l'article <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <div class="guide-image">
+                        <img src="https://images.unsplash.com/photo-1620694563886-c3a80ec55f41?auto=format&fit=crop&q=80&w=800"
+                            alt="Comportement" loading="lazy">
+                        <span class="guide-tag">Comportement</span>
+                    </div>
+                    <div class="guide-content">
+                        <h3>Comprendre le comportement</h3>
+                        <p>Décryptez le langage corporel et les vocalisations de vos oiseaux.</p>
+                        <a href="#" class="card-link">Lire l'article <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="species-section container">
+            <h2 class="section-title">Fiches Espèces</h2>
+            <p class="section-subtitle">Informations essentielles sur nos espèces les plus populaires</p>
+            <div class="species-grid">
+                <div class="species-card">
+                    <div class="species-icon">🦜</div>
+                    <h4>Gris du Gabon</h4>
+                    <div class="species-stats">
+                        <span><i data-lucide="clock"></i> 40-60 ans</span>
+                        <span><i data-lucide="ruler"></i> 33 cm</span>
+                    </div>
+                    <p>Très intelligent, excellent parleur</p>
+                </div>
+                <div class="species-card">
+                    <div class="species-icon">🐦</div>
+                    <h4>Perruche Ondulée</h4>
+                    <div class="species-stats">
+                        <span><i data-lucide="clock"></i> 5-10 ans</span>
+                        <span><i data-lucide="ruler"></i> 18 cm</span>
+                    </div>
+                    <p>Sociable, idéal pour débuter</p>
+                </div>
+                <div class="species-card">
+                    <div class="species-icon">🐤</div>
+                    <h4>Canari</h4>
+                    <div class="species-stats">
+                        <span><i data-lucide="clock"></i> 10-15 ans</span>
+                        <span><i data-lucide="ruler"></i> 12 cm</span>
+                    </div>
+                    <p>Chanteur mélodieux</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🐦</span>
+                    <h3>Bird Haven</h3>
+                </div>
+                <p>Votre partenaire de confiance pour l'univers aviaire depuis 2020.</p>
+                <div class="social-links">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="oiseaux.html">Nos Oiseaux</a>
+                    <a href="accessoires.html">Accessoires</a>
+                    <a href="guides.html">Guides</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <a href="mentions-legales.html">Mentions Légales</a>
+                    <a href="politique-confidentialite.html">Confidentialité</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bird Haven. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Oiseaux | Bird Haven</title>
+    <meta name="description"
+        content="Découvrez notre collection d'oiseaux d'exception : perroquets, perruches, canaris et plus.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="page-catalog">
+    <header id="main-header" class="scrolled">
+        <div class="logo">
+            <span class="logo-icon">🐦</span>
+            <a href="index.html">
+                <h1>Bird Haven</h1>
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="oiseaux.html" class="active">Nos Oiseaux</a></li>
+                <li><a href="accessoires.html">Accessoires</a></li>
+                <li><a href="guides.html">Guides & Conseils</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="panier.html" class="cart-btn">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </a>
+            <a href="compte.html" class="btn btn-primary btn-sm">Mon Compte</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-hero">
+            <div class="container">
+                <span class="page-badge">🦜 Notre Collection</span>
+                <h1>Nos Oiseaux d'Exception</h1>
+                <p>Découvrez notre sélection d'oiseaux élevés avec passion et rigueur par des éleveurs certifiés.</p>
+            </div>
+        </section>
+
+        <section class="catalog-section container">
+            <div class="catalog-controls">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i data-lucide="grid-3x3"></i> Tous
+                    </button>
+                    <button class="filter-btn" data-filter="Perroquet">
+                        <i data-lucide="bird"></i> Perroquets
+                    </button>
+                    <button class="filter-btn" data-filter="Perruche">Perruches</button>
+                    <button class="filter-btn" data-filter="Canari">Canaris</button>
+                </div>
+                <div class="sort">
+                    <select id="sort-select">
+                        <option value="default">Trier par</option>
+                        <option value="price-asc">Prix croissant</option>
+                        <option value="price-desc">Prix décroissant</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="birds-grid" class="products-grid">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🐦</span>
+                    <h3>Bird Haven</h3>
+                </div>
+                <p>Votre partenaire de confiance pour l'univers aviaire depuis 2020.</p>
+                <div class="social-links">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="oiseaux.html">Nos Oiseaux</a>
+                    <a href="accessoires.html">Accessoires</a>
+                    <a href="guides.html">Guides</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <a href="mentions-legales.html">Mentions Légales</a>
+                    <a href="politique-confidentialite.html">Confidentialité</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bird Haven. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { BIRDS_DATA } from './data.js';
+
+        const grid = document.getElementById('birds-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        function renderBirds(data) {
+            grid.innerHTML = data.map(bird => `
+                <div class="product-card" data-category="${bird.category}">
+                    <div class="product-image">
+                        <img src="${bird.image}" alt="${bird.name}" loading="lazy">
+                        <span class="product-badge">${bird.category}</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>${bird.name}</h3>
+                        <p class="scientific">${bird.scientific}</p>
+                        <div class="product-footer">
+                            <span class="price">${bird.price} €</span>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-id="${bird.id}">
+                                <i data-lucide="shopping-cart"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        renderBirds(BIRDS_DATA);
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                const filtered = filter === 'all' ? BIRDS_DATA : BIRDS_DATA.filter(b => b.category === filter);
+                renderBirds(filtered);
+            });
+        });
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Haven | L'univers passionné des oiseaux</title>
+    <meta name="description"
+        content="Découvrez Bird Haven : vente d'oiseaux, accessoires haut de gamme et guides complets pour passionnés. Expertises et conseils pour vos compagnons à plumes.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="logo">
+            <span class="logo-icon">🐦</span>
+            <h1>Bird Haven</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="oiseaux.html">Nos Oiseaux</a></li>
+                <li><a href="accessoires.html">Accessoires</a></li>
+                <li><a href="guides.html">Guides & Conseils</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="panier.html" class="cart-btn">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </a>
+            <a href="compte.html" class="btn btn-primary btn-sm">Mon Compte</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <span class="hero-badge">✨ La référence des passionnés d'oiseaux</span>
+                <h1>Éveillez votre passion pour les oiseaux</h1>
+                <p>Découvrez une sélection unique d'oiseaux d'exception, des accessoires de qualité premium et toute
+                    l'expertise pour en prendre soin.</p>
+                <div class="hero-btns">
+                    <a href="oiseaux.html" class="btn btn-primary btn-lg">
+                        <i data-lucide="search"></i>
+                        Explorer le catalogue
+                    </a>
+                    <a href="guides.html" class="btn btn-outline btn-lg">En savoir plus</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>500+</strong>
+                        <span>Oiseaux vendus</span>
+                    </div>
+                    <div class="stat">
+                        <strong>50+</strong>
+                        <span>Espèces disponibles</span>
+                    </div>
+                    <div class="stat">
+                        <strong>98%</strong>
+                        <span>Clients satisfaits</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title">Explorez notre univers</h2>
+                <p class="section-subtitle">Tout ce dont vous avez besoin pour vos compagnons à plumes</p>
+                <div class="categories-grid">
+                    <a href="oiseaux.html" class="category-card">
+                        <div class="category-icon">🦜</div>
+                        <h3>Nos Oiseaux</h3>
+                        <p>Perruches, canaris, perroquets et bien plus encore.</p>
+                        <span class="card-link">Découvrir <i data-lucide="arrow-right"></i></span>
+                    </a>
+                    <a href="accessoires.html" class="category-card">
+                        <div class="category-icon">🏠</div>
+                        <h3>Accessoires</h3>
+                        <p>Cages, nourriture premium et jouets interactifs.</p>
+                        <span class="card-link">Voir tout <i data-lucide="arrow-right"></i></span>
+                    </a>
+                    <a href="guides.html" class="category-card">
+                        <div class="category-icon">📚</div>
+                        <h3>Guides & Conseils</h3>
+                        <p>Conseils d'experts pour le bien-être de vos oiseaux.</p>
+                        <span class="card-link">Lire les guides <i data-lucide="arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="why-us">
+            <div class="container">
+                <h2 class="section-title">Pourquoi choisir Bird Haven ?</h2>
+                <p class="section-subtitle">Notre engagement pour l'excellence</p>
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="leaf"></i>
+                        </div>
+                        <h4>Élevage Responsable</h4>
+                        <p>Nos oiseaux sont élevés dans le respect total de leur bien-être et de la législation.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="gem"></i>
+                        </div>
+                        <h4>Qualité Premium</h4>
+                        <p>Une sélection rigoureuse d'accessoires et de nourriture pour une santé optimale.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="headphones"></i>
+                        </div>
+                        <h4>Support Expert</h4>
+                        <p>Des conseils d'experts disponibles pour vous guider à chaque étape.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="truck"></i>
+                        </div>
+                        <h4>Livraison Soignée</h4>
+                        <p>Livraison rapide et sécurisée pour le confort de vos futurs compagnons.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Ce que disent nos clients</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>"Une expertise incroyable. J'ai trouvé tout ce dont j'avais besoin pour mon gris du Gabon. Le
+                            service est impeccable !"</p>
+                        <div class="author">
+                            <div class="author-avatar">MD</div>
+                            <div class="author-info">
+                                <strong>Marie D.</strong>
+                                <span>Propriétaire d'un Gris du Gabon</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>"Les conseils vétérinaires et les guides sont une mine d'or. Je recommande Bird Haven à tous
+                            les passionnés !"</p>
+                        <div class="author">
+                            <div class="author-avatar">TL</div>
+                            <div class="author-info">
+                                <strong>Thomas L.</strong>
+                                <span>Éleveur amateur</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="stars">★★★★★</div>
+                        <p>"Excellent choix de produits, livraison rapide et équipe très professionnelle. Mon canari
+                            adore sa nouvelle cage !"</p>
+                        <div class="author">
+                            <div class="author-avatar">SB</div>
+                            <div class="author-info">
+                                <strong>Sophie B.</strong>
+                                <span>Propriétaire de canaris</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-card">
+                    <div class="newsletter-content">
+                        <h2>Rejoignez notre communauté</h2>
+                        <p>Recevez nos conseils exclusifs, les nouveautés et des offres spéciales directement dans votre
+                            boîte mail.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Votre adresse email" required>
+                            <button type="submit" class="btn btn-accent">
+                                S'abonner
+                                <i data-lucide="send"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🐦</span>
+                    <h3>Bird Haven</h3>
+                </div>
+                <p>Votre partenaire de confiance pour l'univers aviaire depuis 2020.</p>
+                <div class="social-links">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/maro__uane__x?igsh=MXg5dHlyNjY0amFicw==" target="_blank"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="oiseaux.html">Nos Oiseaux</a>
+                    <a href="accessoires.html">Accessoires</a>
+                    <a href="guides.html">Guides</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <a href="mentions-legales.html">Mentions Légales</a>
+                    <a href="politique-confidentialite.html">Confidentialité</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bird Haven. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
