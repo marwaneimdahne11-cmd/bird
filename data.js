@@ -1,4 +1,4 @@
-export const BIRDS_DATA = [
+export const birdProducts = [
     {
         id: 1,
         name: "Gris du Gabon",
