@@ -1,71 +1,77 @@
-# BIRD - Personal Brand Ecosystem
+# 🦅 Bird - Personal Brand Ecosystem
 
 > **Elevation • Precision • Velocity**
 
-This is the high-performance personal brand website for "Bird", built with Next.js 15 (App Router), Tailwind CSS, and Framer Motion. Designed for speed (Edge) and aesthetics (Neo-Minimalism).
-
-## 🚀 Quick Start
-
-### Prerequisites
-- **Node.js 18.17+** is required.
-  - Download from: [nodejs.org](https://nodejs.org) if not installed.
-
-### Installation
-
-1.  **Install Dependencies**:
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    ```
-
-2.  **Run Development Server**:
-    ```bash
-    npm run dev
-    ```
-
-3.  **Open Localhost**:
-    Visit [http://localhost:3000](http://localhost:3000) to view the application.
-
-## 📂 Project Structure
-
--   `src/app/layout.tsx`: Root layout with font configuration (Outfit, JetBrains Mono) and global providers.
--   `src/app/page.tsx`: Main landing page assembling the core sections.
--   `src/components/Navigation.tsx`: Responsive navigation with glassmorphism and mobile menu.
--   `src/components/Hero.tsx`: "The Takeoff" section with parallax and antigravity animations.
--   `src/components/Gallery.tsx`: Portfolio grid with hover interactions.
--   `src/components/Skills.tsx`: "The Wingspan" capabilities section.
--   `src/components/Contact.tsx`: Secure contact form UI.
--   `public/images/`: Assets for project thumbnails and hero background.
-
-## 🛠 Tech Stack
-
--   **Framework**: Next.js 15+ (App Router)
--   **Styling**: Tailwind CSS (with custom 'Deep Obsidian' theme)
--   **Animations**: Framer Motion & CSS Keyframes
--   **Icons**: Lucide React
--   **Fonts**: Google Fonts (Outfit, JetBrains Mono) via `next/font`
-
-## 📦 Deployment
-
-### Vercel (Recommended)
-1.  Push this code to a GitHub repository.
-2.  Import the repository into Vercel.
-3.  Vercel will automatically detect Next.js and deploy.
-
-See `INFRASTRUCTURE.md` for detailed deployment strategy.
-See `SECURITY.md` for security best practices.
-See `CONTENT_STRATEGY.md` for SEO optimization.
-
-## 🎨 Theme Customization
-
-To modify the color palette, edit `tailwind.config.ts`:
--   `colors.deep-obsidian`: Main background
--   `colors.electric-blue`: Primary accent
--   `colors.electric-purple`: Secondary accent
+Bird is a high-performance personal brand ecosystem architected for modern impact. Built with **Next.js 15**, **Tailwind CSS**, and **Framer Motion**, it delivers a neo-minimalist experience with fluid micro-interactions and edge-ready optimization.
 
 ---
 
-**Designed by Standard Deviation Architecture**
+## 🛠 Tech Stack
+
+- **Core Framework**: [Next.js 15+](https://nextjs.org/) (App Router Architecture)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with a custom 'Deep Obsidian' & 'Electric Blue' theme.
+- **Motion Engine**: [Framer Motion](https://www.framer.com/motion/) for premium animations and parallax effects.
+- **Icons**: [Lucide React](https://lucide.dev/) for high-precision vectors.
+- **Typography**: Optimized fonts (Outfit, JetBrains Mono) via `next/font`.
+- **Infrastructure**: Vercel-native edge computing strategy.
+
+---
+
+## 📂 Architecture
+
+```bash
+bird/
+├── .github/workflows/   # CI/CD Pipeline (Linting & Build Checks)
+├── public/images/       # High-resolution brand assets (bird1-bird9.jpg)
+├── src/app/             # Core routing & global design system
+├── src/components/      # Modular UI components (Navigation, Hero, Gallery, etc.)
+└── tailwind.config.ts   # Design tokens & color palette configuration
+```
+
+---
+
+## 🚀 Professional Workflow
+
+### 1. Development
+Install dependencies and launch the localized engine:
+
+```bash
+npm install
+npm run dev
+```
+
+### 2. Version Control Pipeline
+Always push to `main` to trigger the CI/CD checks:
+
+```bash
+git add .
+git commit -m "feat: enhance brand aesthetics"
+git push origin main
+```
+
+### 3. CI/CD (GitHub Actions)
+Our automated pipeline ensures every push is stable:
+- **Linting**: Enforces code quality and standard deviation design patterns.
+- **Build**: Validates the production bundle before deployment.
+
+---
+
+## 📦 Deployment & Sync
+
+This project is optimized for **Vercel** or **Netlify**.
+
+1. **Connect GitHub**: Import your repository into the dashboard.
+2. **Environment Variables**: Configure any `.env` keys in the dashboard.
+3. **Continuous Deployment**: Every `git push` will automatically trigger a production deploy.
+
+---
+
+## 🔐 Security & Maintenance
+
+- **.gitignore**: Strictly prevents leaking `node_modules`, `.next`, or local `.env` files.
+- **Brand Assets**: Local images (bird1-bird9.jpg) are fully tracked for continuity.
+- **Identity**: Ensure your git identity is configured to maintain accurate history.
+
+---
+
+**Architected by Standard Deviation Architecture**
